@@ -18,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JWTRequestFilter extends OncePerRequestFilter {
@@ -29,35 +30,31 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestTokenHeader = request.getHeader("Authorization");
         String locale = request.getHeader("X-Locale");
-        if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")){
+        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             try {
                 String jwtToken = requestTokenHeader.substring(7);
                 Claims claims = tokenService.getAllClaimsFromToken(jwtToken);
                 String issuer = claims.getIssuer();
-                String username = claims.getSubject();
-                if(issuer.equals("web")){
-                   String role = (String) claims.get("roles");
-                   List<GrantedAuthority> authorities = new ArrayList<>();
-                   authorities.add(new SimpleGrantedAuthority(role));
-                   SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(jwtToken, authorities));
-                }
-                else{
+                if (issuer.equals("web")) {
+                    List<String> roles = tokenService.extractRoles(jwtToken);
+                    List<GrantedAuthority> authorities = roles.stream()
+                            .map(SimpleGrantedAuthority::new)
+                            .collect(Collectors.toList());
+                    SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(jwtToken, authorities));
+                } else {
                     SecurityContextHolder.getContext().setAuthentication(new CustomAuthenticationToken(jwtToken, null));
                 }
-            }
-            catch (ExpiredJwtException ex){
+            } catch (ExpiredJwtException ex) {
                 logger.error("Token Expired : " + ex.getMessage());
                 throw new InvalidTokenException();
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 logger.error("Token Invalid : " + ex.getMessage());
                 throw new InvalidTokenException();
             }
         }
-        if(request.getMethod().equals("OPTIONS")){
+        if (request.getMethod().equals("OPTIONS")) {
             response.setStatus(HttpServletResponse.SC_OK);
-        }
-        else {
+        } else {
             filterChain.doFilter(request, response);
         }
     }

@@ -1,10 +1,13 @@
 package com.system.library.service;
 
+import com.system.library.dto.book.AddBookRequest;
 import com.system.library.dto.book.BookDTO;
 import com.system.library.dto.book.ViewBooksResponse;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.mapper.BookMapper;
+import com.system.library.model.Author;
 import com.system.library.model.Book;
+import com.system.library.repository.AuthorRepository;
 import com.system.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ public class BookService {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    AuthorRepository authorRepository;
 
     @Autowired
     BookMapper bookMapper;
@@ -35,5 +41,15 @@ public class BookService {
             throw new EntityNotFoundException();
 
         return bookMapper.toDTO(book.get());
+    }
+
+    public BookDTO addBook(AddBookRequest addBookRequest){
+        Optional<Author> author = authorRepository.findById(addBookRequest.getAuthorId());
+        if(author.isEmpty())
+            throw new EntityNotFoundException();
+        Book bookToSave = bookMapper.toEntity(addBookRequest);
+        bookToSave.setAuthor(author.get());
+        Book book = bookRepository.save(bookToSave);
+        return bookMapper.toDTO(book);
     }
 }

@@ -14,6 +14,8 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
+    private Long id;
+
     @NotBlank
     private String username;
 
@@ -22,10 +24,19 @@ public class UserDTO {
 
     private Set<Role> roles = new HashSet<>();
 
-    public UserDTO(String username, String email, Set<Role> roles) {
+    public UserDTO(Long id, String username, String email, Set<Role> roles) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.roles = roles;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

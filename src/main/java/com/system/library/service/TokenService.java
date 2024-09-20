@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -47,6 +48,11 @@ public class TokenService {
         String userLoggedIn = claims.getSubject();
         if (!userRequestingData.equals(userLoggedIn))
             throw new UserNotAuthorizedException();
+    }
+
+    public List<String> extractRoles(String token) {
+        Claims claims = getAllClaimsFromToken(token);
+        return claims.get("roles", List.class);  // 'roles' is assumed to be a claim in the token
     }
 
     public String getUsernameFromToken(){

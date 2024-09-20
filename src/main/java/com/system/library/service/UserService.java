@@ -50,7 +50,11 @@ public class UserService {
             validatePassword(loginRequest.getPassword(), user.get().getPassword(), loginRequest.getUsername());
         }
 
-        String token = generateToken(loginRequest.getUsername(), RoleEnum.ROLE_USER);
+        Set<RoleEnum> tokenRoles = new HashSet<>();
+
+       user.get().getRoles().forEach(role -> tokenRoles.add(role.getName()));
+
+        String token = generateToken(loginRequest.getUsername(), tokenRoles);
         return new LoginResponse(loginRequest.getUsername(), token);
     }
 
@@ -115,10 +119,10 @@ public class UserService {
         userRepository.delete(user.get());
     }
 
-    private String generateToken(String username, RoleEnum role) throws NoSuchAlgorithmException, InvalidKeyException {
+    private String generateToken(String username, Set<RoleEnum> roles) throws NoSuchAlgorithmException, InvalidKeyException {
         Map<String, Object> claims = new HashMap<>();
         claims.put("iss", "web");
-        claims.put("roles", role);
+        claims.put("roles", roles);
         String token =  tokenService.generateToken(claims, username);
         return token;
     }

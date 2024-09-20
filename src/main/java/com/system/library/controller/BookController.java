@@ -1,6 +1,8 @@
 package com.system.library.controller;
 
+import com.system.library.config.annotations.IsAdmin;
 import com.system.library.config.annotations.IsUser;
+import com.system.library.dto.book.AddBookRequest;
 import com.system.library.dto.book.BookDTO;
 import com.system.library.dto.book.ViewBooksResponse;
 import com.system.library.service.BookService;
@@ -28,6 +30,13 @@ public class BookController {
     @IsUser
     public ResponseEntity<BookDTO> viewBookDetails(@PathVariable Long id){
         BookDTO bookDTO = bookService.viewBookDetails(id);
+        return new ResponseEntity<>(bookDTO, HttpStatus.OK);
+    }
+
+    @PostMapping
+    @IsAdmin
+    public ResponseEntity<BookDTO> addBook(@RequestBody AddBookRequest addBookRequest){
+        BookDTO bookDTO = bookService.addBook(addBookRequest);
         return new ResponseEntity<>(bookDTO, HttpStatus.OK);
     }
 

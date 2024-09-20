@@ -16,6 +16,8 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MemberDTO {
 
+    private Long id;
+
     @NotBlank
     private String name;
 
@@ -26,11 +28,20 @@ public class MemberDTO {
 
     private List<Book> borrowedBooks = new ArrayList<>();
 
-    public MemberDTO(String name, String email, LocalDate membershipDate, List<Book> borrowedBooks) {
+    public MemberDTO(Long id, String name, String email, LocalDate membershipDate, List<Book> borrowedBooks) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.membershipDate = membershipDate;
         this.borrowedBooks = borrowedBooks;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

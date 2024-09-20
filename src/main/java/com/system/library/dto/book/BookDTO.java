@@ -12,6 +12,8 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookDTO {
 
+    private Long id;
+
     @NotBlank
     private String title;
 
@@ -24,12 +26,21 @@ public class BookDTO {
 
     private Member member;
 
-    public BookDTO(String title, String isbn, LocalDate publishedDate, Author author, Member member) {
+    public BookDTO(Long id, String title, String isbn, LocalDate publishedDate, Author author, Member member) {
+        this.id = id;
         this.title = title;
         this.isbn = isbn;
         this.publishedDate = publishedDate;
         this.author = author;
         this.member = member;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

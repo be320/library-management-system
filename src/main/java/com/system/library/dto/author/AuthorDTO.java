@@ -16,16 +16,27 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthorDTO {
 
+    private Long id;
+
     private String name;
 
     private String biography;
 
     private LocalDate dob;
 
-    public AuthorDTO(String name, String biography, LocalDate dob) {
+    public AuthorDTO(Long id, String name, String biography, LocalDate dob) {
+        this.id = id;
         this.name = name;
         this.biography = biography;
         this.dob = dob;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
