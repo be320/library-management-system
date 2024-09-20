@@ -1,4 +1,4 @@
-package com.system.library.entity;
+package com.system.library.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

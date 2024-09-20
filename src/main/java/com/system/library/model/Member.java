@@ -1,4 +1,4 @@
-package com.system.library.entity;
+package com.system.library.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -16,6 +16,7 @@ public class Member {
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, message = "name should have at least 2 characters")
     private String name;
 
     @Email(message = "Email should be valid")

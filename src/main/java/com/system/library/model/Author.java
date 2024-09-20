@@ -1,8 +1,9 @@
-package com.system.library.entity;
+package com.system.library.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,9 +18,11 @@ public class Author {
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
+    @Size(min = 2, message = "name should have at least 2 characters")
     private String name;
 
     @Lob
+    @NotBlank(message = "Biography is mandatory")
     private String biography;
 
     @Past(message = "Date of birth must be in the past")
