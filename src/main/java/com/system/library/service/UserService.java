@@ -9,6 +9,7 @@ import com.system.library.exception.EntityNotFoundException;
 import com.system.library.exception.InvalidPasswordException;
 import com.system.library.model.Role;
 import com.system.library.model.User;
+import com.system.library.repository.RoleRepository;
 import com.system.library.repository.UserRepository;
 import com.system.library.util.SecurityUtil;
 import com.system.library.util.enums.RoleEnum;
@@ -32,6 +33,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -59,8 +63,9 @@ public class UserService {
         else {
             String hashedPassword = passwordEncoder.encode(registerRequest.getPassword());
             Set<Role> userRoles = new HashSet<>();
-            userRoles.add(new Role(RoleEnum.ROLE_USER));
-            User user = userRepository.save(new User(registerRequest.getUsername(), hashedPassword, registerRequest.getEmail(), userRoles));
+            Role userRole = roleRepository.findByName(RoleEnum.ROLE_USER).get();
+            userRoles.add(userRole);
+            userRepository.save(new User(registerRequest.getUsername(), hashedPassword, registerRequest.getEmail(), userRoles));
         }
         return new RegisterResponse(registerRequest.getUsername());
     }
