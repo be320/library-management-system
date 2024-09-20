@@ -1,5 +1,6 @@
 package com.system.library.model;
 
+import com.system.library.util.enums.RoleEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -15,7 +16,8 @@ public class Role {
     private Long id;
 
     @NotBlank(message = "Role name is mandatory")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private RoleEnum name;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
@@ -23,7 +25,7 @@ public class Role {
     // Constructors
     public Role() {}
 
-    public Role(String name) {
+    public Role(RoleEnum name) {
         this.name = name;
     }
 
@@ -36,11 +38,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
+    public RoleEnum getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(RoleEnum name) {
         this.name = name;
     }
 

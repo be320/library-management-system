@@ -9,6 +9,10 @@ public class RegisterResponse {
     @JsonProperty("username")
     private String username;
 
+    public RegisterResponse(String username){
+        this.username = username;
+    }
+
     public String getUsername() {
         return username;
     }
