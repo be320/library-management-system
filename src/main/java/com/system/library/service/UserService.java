@@ -1,10 +1,6 @@
 package com.system.library.service;
 
-import com.system.library.dto.user.UserDTO;
-import com.system.library.dto.user.LoginRequest;
-import com.system.library.dto.user.LoginResponse;
-import com.system.library.dto.user.RegisterRequest;
-import com.system.library.dto.user.RegisterResponse;
+import com.system.library.dto.user.*;
 import com.system.library.exception.EntityAlreadyExistingException;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.exception.InvalidPasswordException;
@@ -83,6 +79,30 @@ public class UserService {
             throw new EntityNotFoundException();
 
         return userMapper.toDTO(user.get());
+    }
+
+    public UserDTO updateUserDetails(UpdateUserRequest updateUserRequest){
+
+        String username =  tokenService.getUsernameFromToken();
+        Optional<User> userOptional =  userRepository.findByUsername(username);
+
+        if(userOptional.isPresent()){
+            User user = userOptional.get();
+
+            if(updateUserRequest.getEmail() != null)
+                user.setEmail(updateUserRequest.getEmail());
+            if(updateUserRequest.getUsername() != null)
+                user.setUsername(updateUserRequest.getUsername());
+            if(updateUserRequest.getPassword() != null)
+                user.setPassword(updateUserRequest.getPassword());
+
+            userRepository.save(user);
+            return userMapper.toDTO(user);
+        }
+        else {
+            throw new EntityNotFoundException();
+        }
+
     }
     
     

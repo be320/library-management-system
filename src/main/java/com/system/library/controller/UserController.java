@@ -1,11 +1,7 @@
 package com.system.library.controller;
 
 import com.system.library.config.annotations.IsUser;
-import com.system.library.dto.user.UserDTO;
-import com.system.library.dto.user.LoginRequest;
-import com.system.library.dto.user.LoginResponse;
-import com.system.library.dto.user.RegisterRequest;
-import com.system.library.dto.user.RegisterResponse;
+import com.system.library.dto.user.*;
 import com.system.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,6 +36,13 @@ public class UserController {
     @IsUser
     public ResponseEntity<UserDTO> viewUserDetails(){
         UserDTO userDTO = userService.viewUserDetails();
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    @PutMapping("/me")
+    @IsUser
+    public ResponseEntity<UserDTO> updateUserDetails(@RequestBody UpdateUserRequest updateUserRequest){
+        UserDTO userDTO = userService.updateUserDetails(updateUserRequest);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
