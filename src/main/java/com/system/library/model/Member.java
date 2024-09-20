@@ -20,6 +20,7 @@ public class Member {
     private String name;
 
     @Email(message = "Email should be valid")
+    @Column(nullable = false, unique = true)
     private String email;
 
     @PastOrPresent(message = "Membership date cannot be in the future")

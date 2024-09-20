@@ -16,12 +16,14 @@ public class User {
 
     @NotBlank(message = "Username is mandatory")
     @Size(min = 2, message = "username should have at least 2 characters")
+    @Column(nullable = false, unique = true)
     private String username;
 
     @NotBlank(message = "Password is mandatory")
     private String password;
 
     @Email(message = "Email should be valid")
+    @Column(nullable = false, unique = true)
     private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
