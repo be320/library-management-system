@@ -49,4 +49,9 @@ public class TokenService {
             throw new UserNotAuthorizedException();
     }
 
+    public String getUsernameFromToken(){
+        Claims claims = getAllClaimsFromToken(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        return claims.getSubject();
+    }
+
 }

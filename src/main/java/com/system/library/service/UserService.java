@@ -1,5 +1,6 @@
 package com.system.library.service;
 
+import com.system.library.dto.user.UserDTO;
 import com.system.library.dto.user.LoginRequest;
 import com.system.library.dto.user.LoginResponse;
 import com.system.library.dto.user.RegisterRequest;
@@ -7,11 +8,12 @@ import com.system.library.dto.user.RegisterResponse;
 import com.system.library.exception.EntityAlreadyExistingException;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.exception.InvalidPasswordException;
+import com.system.library.mapper.UserMapper;
+import com.system.library.model.User;
 import com.system.library.model.Role;
 import com.system.library.model.User;
 import com.system.library.repository.RoleRepository;
 import com.system.library.repository.UserRepository;
-import com.system.library.util.SecurityUtil;
 import com.system.library.util.enums.RoleEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +41,9 @@ public class UserService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserMapper userMapper;
 
     public LoginResponse login(LoginRequest loginRequest) throws NoSuchAlgorithmException, InvalidKeyException {
 
@@ -70,12 +75,23 @@ public class UserService {
         return new RegisterResponse(registerRequest.getUsername());
     }
 
+    public UserDTO viewUserDetails(){
+
+        String username =  tokenService.getUsernameFromToken();
+        Optional<User> user =  userRepository.findByUsername(username);
+        if(user.isEmpty())
+            throw new EntityNotFoundException();
+
+        return userMapper.toDTO(user.get());
+    }
+    
+    
+
     private String generateToken(String username, RoleEnum role) throws NoSuchAlgorithmException, InvalidKeyException {
         Map<String, Object> claims = new HashMap<>();
         claims.put("iss", "web");
         claims.put("roles", role);
         String token =  tokenService.generateToken(claims, username);
-        String hmacTokenString = SecurityUtil.hmacSHA256(SecurityUtil.secretHmac, token);
         return token;
     }
 

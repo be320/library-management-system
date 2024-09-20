@@ -1,5 +1,7 @@
 package com.system.library.controller;
 
+import com.system.library.config.annotations.IsUser;
+import com.system.library.dto.user.UserDTO;
 import com.system.library.dto.user.LoginRequest;
 import com.system.library.dto.user.LoginResponse;
 import com.system.library.dto.user.RegisterRequest;
@@ -32,6 +34,13 @@ public class UserController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) throws NoSuchAlgorithmException, InvalidKeyException {
         LoginResponse loginResponse = userService.login(loginRequest);
         return new ResponseEntity<>(loginResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/me")
+    @IsUser
+    public ResponseEntity<UserDTO> viewUserDetails(){
+        UserDTO userDTO = userService.viewUserDetails();
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
 
