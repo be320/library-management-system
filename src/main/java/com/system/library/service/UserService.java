@@ -104,8 +104,16 @@ public class UserService {
         }
 
     }
-    
-    
+
+    public void deleteUserDetails(){
+
+        String username =  tokenService.getUsernameFromToken();
+        Optional<User> user =  userRepository.findByUsername(username);
+        if(user.isEmpty())
+            throw new EntityNotFoundException();
+
+        userRepository.delete(user.get());
+    }
 
     private String generateToken(String username, RoleEnum role) throws NoSuchAlgorithmException, InvalidKeyException {
         Map<String, Object> claims = new HashMap<>();
