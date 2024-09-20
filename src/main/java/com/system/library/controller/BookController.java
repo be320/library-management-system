@@ -3,14 +3,11 @@ package com.system.library.controller;
 import com.system.library.config.annotations.IsUser;
 import com.system.library.dto.book.BookDTO;
 import com.system.library.dto.book.ViewBooksResponse;
-import com.system.library.dto.user.RegisterResponse;
 import com.system.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
