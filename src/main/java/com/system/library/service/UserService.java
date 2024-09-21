@@ -156,6 +156,19 @@ public class UserService {
         return new ViewUsersResponse(usersDTO);
     }
 
+    public UserDTO addUser(AddUserRequest addUserRequest) {
+
+        if(userRepository.findByUsername(addUserRequest.getUsername()).isPresent()){
+            throw new EntityAlreadyExistingException();
+        }
+        else {
+            String hashedPassword = passwordEncoder.encode(addUserRequest.getPassword());
+            User user = new User(addUserRequest.getUsername(), hashedPassword, addUserRequest.getEmail(), addUserRequest.getRoles());
+            userRepository.save(user);
+            return userMapper.toDTO(user);
+        }
+    }
+
     private String generateToken(String username, Set<RoleEnum> roles) throws NoSuchAlgorithmException, InvalidKeyException {
         Map<String, Object> claims = new HashMap<>();
         claims.put("iss", "web");

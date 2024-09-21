@@ -83,4 +83,11 @@ public class UserController {
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }
 
+    @PostMapping
+    @IsAdmin
+    public ResponseEntity<UserDTO> addUser(@RequestBody AddUserRequest addUserRequest){
+        UserDTO userDTO = userService.addUser(addUserRequest);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
 }
