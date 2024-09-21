@@ -1,11 +1,10 @@
 package com.system.library.dto.user;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.*;
 
 
-public class RegisterRequest {
+public class SaveUserRequest {
 
     @NotBlank
     @JsonProperty("username")

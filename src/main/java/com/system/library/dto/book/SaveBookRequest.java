@@ -1,12 +1,10 @@
 package com.system.library.dto.book;
 
-import com.system.library.model.Author;
-import com.system.library.model.Member;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
-public class AddBookRequest {
+public class SaveBookRequest {
 
     @NotBlank
     private String title;
@@ -20,7 +18,7 @@ public class AddBookRequest {
     @NotBlank
     private Long authorId;
 
-    public AddBookRequest(String title, Long authorId, LocalDate publishedDate, String isbn) {
+    public SaveBookRequest(String title, Long authorId, LocalDate publishedDate, String isbn) {
         this.title = title;
         this.authorId = authorId;
         this.publishedDate = publishedDate;

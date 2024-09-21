@@ -1,6 +1,6 @@
 package com.system.library.mapper;
 
-import com.system.library.dto.book.AddBookRequest;
+import com.system.library.dto.book.SaveBookRequest;
 import com.system.library.dto.book.BookDTO;
 import com.system.library.model.Book;
 import org.mapstruct.Mapper;
@@ -11,6 +11,6 @@ public interface BookMapper {
 
     BookDTO toDTO(Book book);
 
-    Book toEntity(AddBookRequest addBookRequest);
+    Book toEntity(SaveBookRequest addBookRequest);
 }
 

@@ -7,7 +7,6 @@ import com.system.library.exception.InvalidPasswordException;
 import com.system.library.mapper.UserMapper;
 import com.system.library.model.User;
 import com.system.library.model.Role;
-import com.system.library.model.User;
 import com.system.library.repository.RoleRepository;
 import com.system.library.repository.UserRepository;
 import com.system.library.util.enums.RoleEnum;
@@ -60,7 +59,7 @@ public class UserService {
 
 
 
-    public RegisterResponse register(RegisterRequest registerRequest) {
+    public RegisterResponse register(SaveUserRequest registerRequest) {
 
         if(userRepository.findByUsername(registerRequest.getUsername()).isPresent()){
             throw new EntityAlreadyExistingException();
@@ -85,21 +84,16 @@ public class UserService {
         return userMapper.toDTO(user.get());
     }
 
-    public UserDTO updateUserDetails(UpdateUserRequest updateUserRequest){
+    public UserDTO updateUserDetails(SaveUserRequest updateUserRequest){
 
         String username =  tokenService.getUsernameFromToken();
         Optional<User> userOptional =  userRepository.findByUsername(username);
 
         if(userOptional.isPresent()){
             User user = userOptional.get();
-
-            if(updateUserRequest.getEmail() != null)
-                user.setEmail(updateUserRequest.getEmail());
-            if(updateUserRequest.getUsername() != null)
-                user.setUsername(updateUserRequest.getUsername());
-            if(updateUserRequest.getPassword() != null)
-                user.setPassword(updateUserRequest.getPassword());
-
+            user.setEmail(updateUserRequest.getEmail());
+            user.setUsername(updateUserRequest.getUsername());
+            user.setPassword(updateUserRequest.getPassword());
             userRepository.save(user);
             return userMapper.toDTO(user);
         }

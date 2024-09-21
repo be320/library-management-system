@@ -21,7 +21,7 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest registerRequest)  {
+    public ResponseEntity<RegisterResponse> register(@RequestBody SaveUserRequest registerRequest)  {
         RegisterResponse registerResponse = userService.register(registerRequest);
         return new ResponseEntity<>(registerResponse, HttpStatus.OK);
     }
@@ -41,7 +41,7 @@ public class UserController {
 
     @PutMapping("/me")
     @IsUser
-    public ResponseEntity<UserDTO> updateUserDetails(@RequestBody UpdateUserRequest updateUserRequest){
+    public ResponseEntity<UserDTO> updateUserDetails(@RequestBody SaveUserRequest updateUserRequest){
         UserDTO userDTO = userService.updateUserDetails(updateUserRequest);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }

@@ -2,7 +2,7 @@ package com.system.library.controller;
 
 import com.system.library.config.annotations.IsAdmin;
 import com.system.library.config.annotations.IsUser;
-import com.system.library.dto.book.AddBookRequest;
+import com.system.library.dto.book.SaveBookRequest;
 import com.system.library.dto.book.BookDTO;
 import com.system.library.dto.book.ViewBooksResponse;
 import com.system.library.service.BookService;
@@ -35,10 +35,19 @@ public class BookController {
 
     @PostMapping
     @IsAdmin
-    public ResponseEntity<BookDTO> addBook(@RequestBody AddBookRequest addBookRequest){
+    public ResponseEntity<BookDTO> addBook(@RequestBody SaveBookRequest addBookRequest){
         BookDTO bookDTO = bookService.addBook(addBookRequest);
         return new ResponseEntity<>(bookDTO, HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    @IsAdmin
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody SaveBookRequest updateBookRequest){
+        BookDTO bookDTO = bookService.updateBook(id, updateBookRequest);
+        return new ResponseEntity<>(bookDTO, HttpStatus.OK);
+    }
+
+
 
 
 }

@@ -1,6 +1,6 @@
 package com.system.library.service;
 
-import com.system.library.dto.book.AddBookRequest;
+import com.system.library.dto.book.SaveBookRequest;
 import com.system.library.dto.book.BookDTO;
 import com.system.library.dto.book.ViewBooksResponse;
 import com.system.library.exception.EntityNotFoundException;
@@ -43,7 +43,7 @@ public class BookService {
         return bookMapper.toDTO(book.get());
     }
 
-    public BookDTO addBook(AddBookRequest addBookRequest){
+    public BookDTO addBook(SaveBookRequest addBookRequest){
         Optional<Author> author = authorRepository.findById(addBookRequest.getAuthorId());
         if(author.isEmpty())
             throw new EntityNotFoundException();
@@ -51,5 +51,26 @@ public class BookService {
         bookToSave.setAuthor(author.get());
         Book book = bookRepository.save(bookToSave);
         return bookMapper.toDTO(book);
+    }
+
+    public BookDTO updateBook(Long id, SaveBookRequest updateBookRequest){
+
+        Optional<Book> bookOptional =  bookRepository.findById(id);
+        if(bookOptional.isPresent()){
+            Book book = bookOptional.get();
+
+            Optional<Author> authorOptional = authorRepository.findById(updateBookRequest.getAuthorId());
+            if(authorOptional.isEmpty())
+                throw new EntityNotFoundException();
+            book.setAuthor(authorOptional.get());
+
+            book.setIsbn(updateBookRequest.getIsbn());
+            book.setPublishedDate(updateBookRequest.getPublishedDate());
+            book.setTitle(updateBookRequest.getTitle());
+            bookRepository.save(book);
+            return bookMapper.toDTO(book);
+        }
+        else
+            throw new EntityNotFoundException();
     }
 }
