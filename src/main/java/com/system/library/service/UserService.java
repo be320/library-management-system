@@ -163,8 +163,9 @@ public class UserService {
         }
         else {
             String hashedPassword = passwordEncoder.encode(addUserRequest.getPassword());
-            User user = new User(addUserRequest.getUsername(), hashedPassword, addUserRequest.getEmail(), addUserRequest.getRoles());
-            userRepository.save(user);
+            Set<Role> userRoles = new HashSet<>();
+            addUserRequest.getRoles().forEach(roleEnum -> userRoles.add(roleRepository.findByName(roleEnum).get()));
+            User user = userRepository.save(new User(addUserRequest.getUsername(), hashedPassword, addUserRequest.getEmail(), userRoles));
             return userMapper.toDTO(user);
         }
     }

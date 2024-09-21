@@ -17,8 +17,8 @@ This project is a Spring Boot application designed to manage library system. It 
 - [API Endpoints](#api-endpoints)
 - [Database Migration](#database-migration)
 - [Security](#security)
+- [Postman Documentation](#postman)
 - [Exception Handling](#exception-handling)
-- [Screenshots](#screenshots)
 
 ## Features
 
@@ -189,13 +189,15 @@ Flyway is used to manage database migrations. SQL files are located in the `src/
 
 ## Security
 
-- **JWT Tokens**: Used for authentication and authorization. Each token expires after 5 minutes.
+- **JWT Tokens**: Used for authentication and authorization. Each token expires after 1 hour.
 - **Password Hashing**: Secure hashing techniques are used to store passwords.
+
+## Postman
+You can find the project's postman collection in `src/main/resources/postman` and inside each API example for happy flow scenario
+
+![Postman](./src/main/resources/static/postman-sample.png)
+
 
 ## Exception Handling
 
 Global exception handling is implemented using Controller Advice to provide consistent error responses.
-
-## Screenshots
-
-Screenshots showing test case scenarios from Postman are available in the `src/main/resources/screenshots` directory

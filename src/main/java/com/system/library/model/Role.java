@@ -1,8 +1,10 @@
 package com.system.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.system.library.util.enums.RoleEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class Role {
     private RoleEnum name;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     private Set<User> users = new HashSet<>();
 
     // Constructors

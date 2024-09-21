@@ -2,6 +2,7 @@ package com.system.library.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.system.library.model.Role;
+import com.system.library.util.enums.RoleEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -25,7 +26,7 @@ public class AddUserRequest {
     private String email;
 
     @NotEmpty
-    private Set<Role> roles = new HashSet<>();
+    private Set<RoleEnum> roles = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -51,11 +52,11 @@ public class AddUserRequest {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleEnum> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleEnum> roles) {
         this.roles = roles;
     }
 }
