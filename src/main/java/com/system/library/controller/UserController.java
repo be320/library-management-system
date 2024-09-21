@@ -62,4 +62,11 @@ public class UserController {
         return new ResponseEntity<>(viewUsersResponse, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    @IsAdmin
+    public ResponseEntity<UserDTO> viewUserDetails(@PathVariable Long id){
+        UserDTO userDTO = userService.viewUserDetails(id);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
 }

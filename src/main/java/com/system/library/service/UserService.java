@@ -78,9 +78,16 @@ public class UserService {
     }
 
     public UserDTO viewUserDetails(){
-
         String username =  tokenService.getUsernameFromToken();
         Optional<User> user =  userRepository.findByUsername(username);
+        if(user.isEmpty())
+            throw new EntityNotFoundException();
+
+        return userMapper.toDTO(user.get());
+    }
+
+    public UserDTO viewUserDetails(Long id){
+        Optional<User> user =  userRepository.findById(id);
         if(user.isEmpty())
             throw new EntityNotFoundException();
 
