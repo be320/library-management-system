@@ -12,6 +12,8 @@ import com.system.library.model.User;
 import com.system.library.model.Role;
 import com.system.library.repository.RoleRepository;
 import com.system.library.repository.UserRepository;
+import com.system.library.util.enums.EntityEnum;
+import com.system.library.util.enums.OperationEnum;
 import com.system.library.util.enums.RoleEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,9 @@ public class UserService {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    AuditLogService auditLogService;
 
     public LoginResponse login(LoginRequest loginRequest) throws NoSuchAlgorithmException, InvalidKeyException {
 
@@ -105,6 +110,7 @@ public class UserService {
             user.setUsername(updateUserRequest.getUsername());
             user.setPassword(updateUserRequest.getPassword());
             userRepository.save(user);
+            auditLogService.auditLog(EntityEnum.USER, OperationEnum.UPDATE, user.getId());
             return userMapper.toDTO(user);
         }
         else {
@@ -124,6 +130,7 @@ public class UserService {
             String hashedPassword = passwordEncoder.encode(updateUserRequest.getPassword());
             user.setPassword(hashedPassword);
             userRepository.save(user);
+            auditLogService.auditLog(EntityEnum.USER, OperationEnum.UPDATE, user.getId());
             return userMapper.toDTO(user);
         }
         else {
@@ -140,6 +147,7 @@ public class UserService {
             throw new EntityNotFoundException();
 
         userRepository.delete(user.get());
+        auditLogService.auditLog(EntityEnum.USER, OperationEnum.DELETE, user.get().getId());
     }
 
     public void deleteUserDetails(Long id){
@@ -148,6 +156,7 @@ public class UserService {
             throw new EntityNotFoundException();
 
         userRepository.delete(user.get());
+        auditLogService.auditLog(EntityEnum.USER, OperationEnum.DELETE, user.get().getId());
     }
 
     public ViewUsersResponse viewUsers(){
@@ -167,6 +176,7 @@ public class UserService {
             Set<Role> userRoles = new HashSet<>();
             addUserRequest.getRoles().forEach(roleEnum -> userRoles.add(roleRepository.findByName(roleEnum).get()));
             User user = userRepository.save(new User(addUserRequest.getUsername(), hashedPassword, addUserRequest.getEmail(), userRoles));
+            auditLogService.auditLog(EntityEnum.USER, OperationEnum.CREATE, user.getId());
             return userMapper.toDTO(user);
         }
     }

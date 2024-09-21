@@ -10,6 +10,8 @@ import com.system.library.model.Book;
 import com.system.library.model.User;
 import com.system.library.repository.AuthorRepository;
 import com.system.library.repository.BookRepository;
+import com.system.library.util.enums.EntityEnum;
+import com.system.library.util.enums.OperationEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,9 @@ public class BookService {
 
     @Autowired
     BookMapper bookMapper;
+
+    @Autowired
+    AuditLogService auditLogService;
 
     public ViewBooksResponse viewBooks(){
         List<BookDTO> booksDTO = new ArrayList<>();
@@ -51,6 +56,7 @@ public class BookService {
         Book bookToSave = bookMapper.toEntity(addBookRequest);
         bookToSave.setAuthor(author.get());
         Book book = bookRepository.save(bookToSave);
+        auditLogService.auditLog(EntityEnum.BOOK, OperationEnum.CREATE, book.getId());
         return bookMapper.toDTO(book);
     }
 
@@ -69,6 +75,7 @@ public class BookService {
             book.setPublishedDate(updateBookRequest.getPublishedDate());
             book.setTitle(updateBookRequest.getTitle());
             bookRepository.save(book);
+            auditLogService.auditLog(EntityEnum.BOOK, OperationEnum.UPDATE, book.getId());
             return bookMapper.toDTO(book);
         }
         else
@@ -81,5 +88,6 @@ public class BookService {
             throw new EntityNotFoundException();
 
         bookRepository.delete(book.get());
+        auditLogService.auditLog(EntityEnum.BOOK, OperationEnum.DELETE, book.get().getId());
     }
 }

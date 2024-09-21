@@ -42,6 +42,9 @@ public class AuthorService {
     @Autowired
     TokenService tokenService;
 
+    @Autowired
+    AuditLogService auditLogService;
+
     private static final Logger logger = LoggerFactory.getLogger(AuthorService.class);
 
     public ViewAuthorsResponse viewAuthors(){
@@ -62,13 +65,7 @@ public class AuthorService {
     public AuthorDTO addAuthor(SaveAuthorRequest addAuthorRequest){
         Author authorToSave = authorMapper.toEntity(addAuthorRequest);
         Author author = authorRepository.save(authorToSave);
-
-        String username =  tokenService.getUsernameFromToken();
-        Optional<User> user =  userRepository.findByUsername(username);
-        AuditLog auditLog = new AuditLog(EntityEnum.AUTHOR.name(), author.getId(), OperationEnum.CREATE.name(), user.get().getId());
-        auditLogRepository.save(auditLog);
-        auditLog.printDetails();
-
+        auditLogService.auditLog(EntityEnum.AUTHOR, OperationEnum.CREATE, author.getId());
         return authorMapper.toDTO(author);
     }
 
@@ -81,6 +78,7 @@ public class AuthorService {
             author.setDob(updateAuthorRequest.getDob());
             author.setName(updateAuthorRequest.getName());
             authorRepository.save(author);
+            auditLogService.auditLog(EntityEnum.AUTHOR, OperationEnum.UPDATE, author.getId());
             return authorMapper.toDTO(author);
         }
         else
@@ -91,8 +89,8 @@ public class AuthorService {
         Optional<Author> author =  authorRepository.findById(id);
         if(author.isEmpty())
             throw new EntityNotFoundException();
-
         authorRepository.delete(author.get());
+        auditLogService.auditLog(EntityEnum.AUTHOR, OperationEnum.DELETE, author.get().getId());
     }
 
 }

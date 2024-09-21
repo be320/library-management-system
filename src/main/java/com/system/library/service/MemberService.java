@@ -9,6 +9,8 @@ import com.system.library.mapper.MemberMapper;
 import com.system.library.model.Member;
 import com.system.library.model.Member;
 import com.system.library.repository.MemberRepository;
+import com.system.library.util.enums.EntityEnum;
+import com.system.library.util.enums.OperationEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class MemberService {
 
     @Autowired
     MemberMapper memberMapper;
+
+    @Autowired
+    AuditLogService auditLogService;
 
     public ViewMembersResponse viewMembers(){
         List<MemberDTO> membersDTO = new ArrayList<>();
@@ -43,6 +48,7 @@ public class MemberService {
     public MemberDTO addMember(SaveMemberRequest addMemberRequest){
         Member memberToSave = memberMapper.toEntity(addMemberRequest);
         Member member = memberRepository.save(memberToSave);
+        auditLogService.auditLog(EntityEnum.MEMBER, OperationEnum.CREATE, member.getId());
         return memberMapper.toDTO(member);
     }
 
@@ -55,6 +61,7 @@ public class MemberService {
             member.setName(updateMemberRequest.getName());
             member.setMembershipDate(updateMemberRequest.getMembershipDate());
             memberRepository.save(member);
+            auditLogService.auditLog(EntityEnum.MEMBER, OperationEnum.UPDATE, member.getId());
             return memberMapper.toDTO(member);
         }
         else
@@ -67,6 +74,7 @@ public class MemberService {
             throw new EntityNotFoundException();
 
         memberRepository.delete(member.get());
+        auditLogService.auditLog(EntityEnum.MEMBER, OperationEnum.DELETE, member.get().getId());
     }
 
 }
