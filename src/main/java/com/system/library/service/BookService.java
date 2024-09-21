@@ -7,6 +7,7 @@ import com.system.library.exception.EntityNotFoundException;
 import com.system.library.mapper.BookMapper;
 import com.system.library.model.Author;
 import com.system.library.model.Book;
+import com.system.library.model.User;
 import com.system.library.repository.AuthorRepository;
 import com.system.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,13 @@ public class BookService {
         }
         else
             throw new EntityNotFoundException();
+    }
+
+    public void deleteBook(Long id){
+        Optional<Book> book =  bookRepository.findById(id);
+        if(book.isEmpty())
+            throw new EntityNotFoundException();
+
+        bookRepository.delete(book.get());
     }
 }
