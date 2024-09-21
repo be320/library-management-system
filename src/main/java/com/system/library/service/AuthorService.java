@@ -2,8 +2,11 @@ package com.system.library.service;
 
 import com.system.library.dto.author.AuthorDTO;
 import com.system.library.dto.author.ViewAuthorsResponse;
+import com.system.library.dto.author.AuthorDTO;
+import com.system.library.dto.author.SaveAuthorRequest;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.mapper.AuthorMapper;
+import com.system.library.model.Author;
 import com.system.library.model.Author;
 import com.system.library.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,35 @@ public class AuthorService {
             throw new EntityNotFoundException();
 
         return authorMapper.toDTO(author.get());
+    }
+
+    public AuthorDTO addAuthor(SaveAuthorRequest addAuthorRequest){
+        Author authorToSave = authorMapper.toEntity(addAuthorRequest);
+        Author author = authorRepository.save(authorToSave);
+        return authorMapper.toDTO(author);
+    }
+
+    public AuthorDTO updateAuthor(Long id, SaveAuthorRequest updateAuthorRequest){
+
+        Optional<Author> authorOptional =  authorRepository.findById(id);
+        if(authorOptional.isPresent()){
+            Author author = authorOptional.get();
+            author.setBiography(updateAuthorRequest.getBiography());
+            author.setDob(updateAuthorRequest.getDob());
+            author.setName(updateAuthorRequest.getName());
+            authorRepository.save(author);
+            return authorMapper.toDTO(author);
+        }
+        else
+            throw new EntityNotFoundException();
+    }
+
+    public void deleteAuthor(Long id){
+        Optional<Author> author =  authorRepository.findById(id);
+        if(author.isEmpty())
+            throw new EntityNotFoundException();
+
+        authorRepository.delete(author.get());
     }
 
 }

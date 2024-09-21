@@ -48,7 +48,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    @IsUser
+    @IsAdmin
     public ResponseEntity<String> deleteBook(@PathVariable Long id){
         bookService.deleteBook(id);
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
