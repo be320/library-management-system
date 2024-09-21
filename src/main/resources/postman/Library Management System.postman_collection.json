@@ -1,0 +1,1583 @@
+{
+	"info": {
+		"_postman_id": "83826cf9-9cc9-4d93-bb2d-a9e56e202154",
+		"name": "Library Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8279707"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"joe\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"joe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"joe\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"joe@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"username\": \"joe\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"secret\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"username\": \"admin\",\r\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6IlJPTEVfVVNFUiIsImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2ODM4MjE1LCJleHAiOjE3MjY4Mzg1MTV9.evj4PU5xckpGCn4wAz4DiiBAGgx5CxA-ZP6UYjwP-ewF47TRrSQOTJ0Ca_aBHDXhuWsNS0wtvXM3L34WZWUGgw\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "View Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE2MDY5LCJleHAiOjE3MjY5MTk2Njl9.QN4koaWVyAtKnSnHmpca37QJOkTF9KxqmcFEz0yFDIRQlMvyjHJKLtRbrc7MJigAUZ4Oeb3P9E4bpHNvkqXRjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"users\": [\r\n        {\r\n            \"id\": 1,\r\n            \"username\": \"admin\",\r\n            \"email\": \"admin@example.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"username\": \"joe\",\r\n            \"email\": \"joe@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 2,\r\n                    \"name\": \"ROLE_USER\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"username\": \"user01\",\r\n            \"email\": \"user01@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"username\": \"user02\",\r\n            \"email\": \"user02@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"username\": \"user03\",\r\n            \"email\": \"user03@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 6,\r\n            \"username\": \"user04\",\r\n            \"email\": \"user04@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 7,\r\n            \"username\": \"user05\",\r\n            \"email\": \"user05@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 8,\r\n            \"username\": \"user06\",\r\n            \"email\": \"user06@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 9,\r\n            \"username\": \"user07\",\r\n            \"email\": \"user07@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 10,\r\n            \"username\": \"user08\",\r\n            \"email\": \"user08@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"name\": \"ROLE_ADMIN\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"id\": 11,\r\n            \"username\": \"user09\",\r\n            \"email\": \"user09@gmail.com\",\r\n            \"roles\": [\r\n                {\r\n                    \"id\": 2,\r\n                    \"name\": \"ROLE_USER\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "View User Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE2MDY5LCJleHAiOjE3MjY5MTk2Njl9.QN4koaWVyAtKnSnHmpca37QJOkTF9KxqmcFEz0yFDIRQlMvyjHJKLtRbrc7MJigAUZ4Oeb3P9E4bpHNvkqXRjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View User Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"username\": \"admin\",\r\n    \"email\": \"admin@example.com\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"ROLE_ADMIN\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "View My Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6InVzZXIwOCIsImlhdCI6MTcyNjkxODQwNywiZXhwIjoxNzI2OTIyMDA3fQ.O0t4EAMSU4n0uzF5-3Y8XmHI-cS_JF_iGiQ5hRpUoYQjiWYmPDylv1ipZaY3mCpfWa46TNeLOO9BAFCIBfT0rQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View My Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/users/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"username\": \"admin\",\r\n    \"email\": \"admin@example.com\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"ROLE_ADMIN\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Add User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE2MDY5LCJleHAiOjE3MjY5MTk2Njl9.QN4koaWVyAtKnSnHmpca37QJOkTF9KxqmcFEz0yFDIRQlMvyjHJKLtRbrc7MJigAUZ4Oeb3P9E4bpHNvkqXRjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user09\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"user09@gmail.com\",\r\n    \"roles\": [\"ROLE_USER\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user08\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"user08@gmail.com\",\r\n    \"roles\": [\"ROLE_ADMIN\"]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 10,\r\n    \"username\": \"user08\",\r\n    \"email\": \"user08@gmail.com\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"ROLE_ADMIN\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE2MDY5LCJleHAiOjE3MjY5MTk2Njl9.QN4koaWVyAtKnSnHmpca37QJOkTF9KxqmcFEz0yFDIRQlMvyjHJKLtRbrc7MJigAUZ4Oeb3P9E4bpHNvkqXRjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user09\",\r\n    \"password\": \"newPass\",\r\n    \"email\": \"user099@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"11"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user09\",\r\n    \"password\": \"newPass\",\r\n    \"email\": \"user099@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"11"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 11,\r\n    \"username\": \"user09\",\r\n    \"email\": \"user099@gmail.com\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": 2,\r\n            \"name\": \"ROLE_USER\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update My Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6InVzZXIwOCIsImlhdCI6MTcyNjkxODQwNywiZXhwIjoxNzI2OTIyMDA3fQ.O0t4EAMSU4n0uzF5-3Y8XmHI-cS_JF_iGiQ5hRpUoYQjiWYmPDylv1ipZaY3mCpfWa46TNeLOO9BAFCIBfT0rQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user08\",\r\n    \"email\": \"user088@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user08\",\r\n    \"email\": \"user088@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 10,\r\n    \"username\": \"user08\",\r\n    \"email\": \"user088@gmail.com\",\r\n    \"roles\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"ROLE_ADMIN\"\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE4NzAzLCJleHAiOjE3MjY5MjIzMDN9.dThwOrmlvXgCF-4PVXBbiPjatmuefGwJl1DxYwJwJ0kFaJQO0QywkdwfKArodNg6dLR2Uu4ZFRq4rNruaZKvvw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/users/6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"6"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Deleted Successfully"
+						}
+					]
+				},
+				{
+					"name": "Delete My Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6InVzZXIwNSIsImlhdCI6MTcyNjkxODYzNywiZXhwIjoxNzI2OTIyMjM3fQ.y-UMbZqN0jGVpKNmU3iAVjgnqBTEelLFTs4aK4Sn1cFhQXb5IDZw8qUbVnLofLHfA7WhVhoRzVVuGDLnfKd0_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete My Profile",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/users/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"me"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Deleted Successfully"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "View Authors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/authors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authors"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/authors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"authors"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "View Author Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/authors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authors",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/authors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"authors",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Ahmed Bahaa\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ahmed Bahaa\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/authors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authors"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ahmed Bahaa\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/authors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"authors"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Ahmed Bahaa\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ahmed Bahaa Ibrahim\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/authors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authors",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ahmed Bahaa Ibrahim\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/authors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"authors",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Ahmed Bahaa Ibrahim\",\r\n    \"biography\": \"Software Engineer born in Egypr\",\r\n    \"dob\": \"1998-02-15\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/authors/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"authors",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Author",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/authors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"authors",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Deleted Successfully"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "View Books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/books",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"books\": [\r\n        {\r\n            \"id\": 3,\r\n            \"title\": \"Effective Java\",\r\n            \"isbn\": \"978-0134685991\",\r\n            \"publishedDate\": \"2018-01-06\",\r\n            \"author\": {\r\n                \"id\": 2,\r\n                \"name\": \"Ahmed Bahaa\",\r\n                \"biography\": \"Software Engineer born in Egypr\",\r\n                \"dob\": \"1998-02-15\"\r\n            }\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"title\": \" Python\",\r\n            \"isbn\": \"978-0134685991\",\r\n            \"publishedDate\": \"2018-01-06\",\r\n            \"author\": {\r\n                \"id\": 2,\r\n                \"name\": \"Ahmed Bahaa\",\r\n                \"biography\": \"Software Engineer born in Egypr\",\r\n                \"dob\": \"1998-02-15\"\r\n            }\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "View Book Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/books/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 2,\r\n    \"title\": \" Python\",\r\n    \"isbn\": \"978-0134685991\",\r\n    \"publishedDate\": \"2018-01-06\",\r\n    \"author\": {\r\n        \"id\": 2,\r\n        \"name\": \"Ahmed Bahaa\",\r\n        \"biography\": \"Software Engineer born in Egypr\",\r\n        \"dob\": \"1998-02-15\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Effective Java\",\r\n  \"isbn\": \"978-0134685991\",\r\n  \"publishedDate\": \"2018-01-06\",\r\n  \"authorId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Effective Java\",\r\n  \"isbn\": \"978-0134685991\",\r\n  \"publishedDate\": \"2018-01-06\",\r\n  \"authorId\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/books",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 3,\r\n    \"title\": \"Effective Java\",\r\n    \"isbn\": \"978-0134685991\",\r\n    \"publishedDate\": \"2018-01-06\",\r\n    \"author\": {\r\n        \"id\": 2,\r\n        \"name\": \"Ahmed Bahaa\",\r\n        \"biography\": \"Software Engineer born in Egypr\",\r\n        \"dob\": \"1998-02-15\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Release 2: Effective Java\",\r\n  \"isbn\": \"978-0134685991\",\r\n  \"publishedDate\": \"2018-01-06\",\r\n  \"authorId\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/books/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/books/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books",
+										"2"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 3,\r\n    \"title\": \"Release 2: Effective Java\",\r\n    \"isbn\": \"978-0134685991\",\r\n    \"publishedDate\": \"2018-01-06\",\r\n    \"author\": {\r\n        \"id\": 2,\r\n        \"name\": \"Ahmed Bahaa\",\r\n        \"biography\": \"Software Engineer born in Egypr\",\r\n        \"dob\": \"1998-02-15\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/books/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"books",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/books/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"books",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Deleted Successfully"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "View Members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"members"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View Members",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"members\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"member01\",\r\n            \"email\": \"member01@gmail.com\",\r\n            \"membershipDate\": \"2023-09-21\",\r\n            \"borrowedBooks\": []\r\n        }\r\n    ]\r\n}"
+						}
+					]
+				},
+				{
+					"name": "View Member Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/members/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"members",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"member01\",\r\n    \"email\": \"member01@gmail.com\",\r\n    \"membershipDate\": \"2023-09-21\",\r\n    \"borrowedBooks\": []\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Add Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"member01\",\r\n  \"email\": \"member01@gmail.com\",\r\n  \"membershipDate\": \"2023-09-21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"members"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"member01\",\r\n  \"email\": \"member01@gmail.com\",\r\n  \"membershipDate\": \"2023-09-21\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"member01\",\r\n    \"email\": \"member01@gmail.com\",\r\n    \"membershipDate\": \"2023-09-21\",\r\n    \"borrowedBooks\": []\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"member01\",\r\n  \"email\": \"member01@gmail.com\",\r\n  \"membershipDate\": \"2023-10-21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/members/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"members",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"name\": \"member01\",\r\n    \"email\": \"member01@gmail.com\",\r\n    \"membershipDate\": \"2023-10-21\",\r\n    \"borrowedBooks\": []\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sImlzcyI6IndlYiIsInN1YiI6ImFkbWluIiwiaWF0IjoxNzI2OTE5MDIyLCJleHAiOjE3MjY5MjI2MjJ9.V7psXGAXFBWWxuw6KfIAUiv9Qe1hObXclJeVfU-PTbrJ-A3xj_wtyQEEURMdZ_E3j1XOODOKUSfWQPjMGBSwuQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/members/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"members",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Happy Flow",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "Deleted Successfully"
+						}
+					]
+				}
+			]
+		}
+	]
+}

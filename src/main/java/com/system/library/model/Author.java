@@ -1,5 +1,6 @@
 package com.system.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -29,6 +30,7 @@ public class Author {
     private LocalDate dob;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Book> books = new ArrayList<>();
 
 

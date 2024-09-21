@@ -66,6 +66,11 @@ This project is a Spring Boot application designed to manage library system. It 
 
 3. **Test the APIs**: Use the provided Postman collection to test the APIs.
 
+## Postman
+You can find the project's postman collection in `src/main/resources/postman` and inside each API example for happy flow scenario
+
+![Postman](./src/main/resources/static/postman-sample.png)
+
 ## ERD
 
 ![ERD](./src/main/resources/static/ERD.png)
@@ -191,11 +196,6 @@ Flyway is used to manage database migrations. SQL files are located in the `src/
 
 - **JWT Tokens**: Used for authentication and authorization. Each token expires after 1 hour.
 - **Password Hashing**: Secure hashing techniques are used to store passwords.
-
-## Postman
-You can find the project's postman collection in `src/main/resources/postman` and inside each API example for happy flow scenario
-
-![Postman](./src/main/resources/static/postman-sample.png)
 
 
 ## Exception Handling
