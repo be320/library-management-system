@@ -19,7 +19,7 @@ This project is a Spring Boot application designed to manage library system. It 
 - [Security](#security)
 - [Postman Documentation](#postman)
 - [Exception Handling](#exception-handling)
-- [Audit Logging] (#audit-logging)
+- [Audit Logging](#audit-logging)
 
 ## Features
 
