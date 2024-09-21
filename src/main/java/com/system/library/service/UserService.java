@@ -141,6 +141,14 @@ public class UserService {
         userRepository.delete(user.get());
     }
 
+    public void deleteUserDetails(Long id){
+        Optional<User> user =  userRepository.findById(id);
+        if(user.isEmpty())
+            throw new EntityNotFoundException();
+
+        userRepository.delete(user.get());
+    }
+
     public ViewUsersResponse viewUsers(){
         List<UserDTO> usersDTO = new ArrayList<>();
         List<User> users = userRepository.findAll();

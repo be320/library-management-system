@@ -70,10 +70,17 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    @IsUser
+    @IsAdmin
     public ResponseEntity<UserDTO> updateUserDetails(@PathVariable Long id, @RequestBody SaveUserRequest updateUserRequest){
         UserDTO userDTO = userService.updateUserDetails(id, updateUserRequest);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    @IsAdmin
+    public ResponseEntity<String> deleteUserDetails(@PathVariable Long id){
+        userService.deleteUserDetails(id);
+        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }
 
 }
