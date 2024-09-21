@@ -121,7 +121,8 @@ public class UserService {
             User user = userOptional.get();
             user.setEmail(updateUserRequest.getEmail());
             user.setUsername(updateUserRequest.getUsername());
-            user.setPassword(updateUserRequest.getPassword());
+            String hashedPassword = passwordEncoder.encode(updateUserRequest.getPassword());
+            user.setPassword(hashedPassword);
             userRepository.save(user);
             return userMapper.toDTO(user);
         }
