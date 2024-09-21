@@ -1,9 +1,12 @@
 package com.system.library.service;
 
 import com.system.library.dto.member.MemberDTO;
+import com.system.library.dto.member.SaveMemberRequest;
+import com.system.library.dto.member.MemberDTO;
 import com.system.library.dto.member.ViewMembersResponse;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.mapper.MemberMapper;
+import com.system.library.model.Member;
 import com.system.library.model.Member;
 import com.system.library.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +39,34 @@ public class MemberService {
 
         return memberMapper.toDTO(member.get());
     }
+
+    public MemberDTO addMember(SaveMemberRequest addMemberRequest){
+        Member memberToSave = memberMapper.toEntity(addMemberRequest);
+        Member member = memberRepository.save(memberToSave);
+        return memberMapper.toDTO(member);
+    }
+
+    public MemberDTO updateMember(Long id, SaveMemberRequest updateMemberRequest){
+
+        Optional<Member> memberOptional =  memberRepository.findById(id);
+        if(memberOptional.isPresent()){
+            Member member = memberOptional.get();
+            member.setEmail(updateMemberRequest.getEmail());
+            member.setName(updateMemberRequest.getName());
+            member.setMembershipDate(updateMemberRequest.getMembershipDate());
+            memberRepository.save(member);
+            return memberMapper.toDTO(member);
+        }
+        else
+            throw new EntityNotFoundException();
+    }
+
+    public void deleteMember(Long id){
+        Optional<Member> member =  memberRepository.findById(id);
+        if(member.isEmpty())
+            throw new EntityNotFoundException();
+
+        memberRepository.delete(member.get());
+    }
+
 }
