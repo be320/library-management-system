@@ -19,6 +19,7 @@ This project is a Spring Boot application designed to manage library system. It 
 - [Security](#security)
 - [Postman Documentation](#postman)
 - [Exception Handling](#exception-handling)
+- [Audit Logging] (#audit-logging)
 
 ## Features
 
@@ -31,6 +32,7 @@ This project is a Spring Boot application designed to manage library system. It 
 - **Database**: Oracle database for data storage with Flyway for migrations.
 - **Security**: JWT token-based authentication and authorization with hashed passwords.
 - **Exception Handling**: Global exception handling using Controller Advice.
+- **Audit Logging**: Added Audit Logging for tracing
 
 ## Technologies Used
 
@@ -196,6 +198,14 @@ Flyway is used to manage database migrations. SQL files are located in the `src/
 
 - **JWT Tokens**: Used for authentication and authorization. Each token expires after 1 hour.
 - **Password Hashing**: Secure hashing techniques are used to store passwords.
+
+
+## Audit Logging
+
+Added Audit Logging to enable tracing user behavior in the system
+
+![Audit Logging](./src/main/resources/static/logs.png)
+![Audit Logging DB](./src/main/resources/static/log-db.png)
 
 
 ## Exception Handling

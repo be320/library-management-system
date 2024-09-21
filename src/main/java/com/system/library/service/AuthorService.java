@@ -6,9 +6,17 @@ import com.system.library.dto.author.AuthorDTO;
 import com.system.library.dto.author.SaveAuthorRequest;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.mapper.AuthorMapper;
+import com.system.library.model.AuditLog;
 import com.system.library.model.Author;
 import com.system.library.model.Author;
+import com.system.library.model.User;
+import com.system.library.repository.AuditLogRepository;
 import com.system.library.repository.AuthorRepository;
+import com.system.library.repository.UserRepository;
+import com.system.library.util.enums.EntityEnum;
+import com.system.library.util.enums.OperationEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +31,18 @@ public class AuthorService {
     AuthorRepository authorRepository;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    AuditLogRepository auditLogRepository;
+
+    @Autowired
     AuthorMapper authorMapper;
+
+    @Autowired
+    TokenService tokenService;
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthorService.class);
 
     public ViewAuthorsResponse viewAuthors(){
         List<AuthorDTO> authorsDTO = new ArrayList<>();
@@ -43,6 +62,13 @@ public class AuthorService {
     public AuthorDTO addAuthor(SaveAuthorRequest addAuthorRequest){
         Author authorToSave = authorMapper.toEntity(addAuthorRequest);
         Author author = authorRepository.save(authorToSave);
+
+        String username =  tokenService.getUsernameFromToken();
+        Optional<User> user =  userRepository.findByUsername(username);
+        AuditLog auditLog = new AuditLog(EntityEnum.AUTHOR.name(), author.getId(), OperationEnum.CREATE.name(), user.get().getId());
+        auditLogRepository.save(auditLog);
+        auditLog.printDetails();
+
         return authorMapper.toDTO(author);
     }
 
