@@ -1,10 +1,13 @@
 package com.system.library.service;
 
+import com.system.library.dto.user.UserDTO;
+import com.system.library.dto.user.ViewUsersResponse;
 import com.system.library.dto.user.*;
 import com.system.library.exception.EntityAlreadyExistingException;
 import com.system.library.exception.EntityNotFoundException;
 import com.system.library.exception.InvalidPasswordException;
 import com.system.library.mapper.UserMapper;
+import com.system.library.model.User;
 import com.system.library.model.User;
 import com.system.library.model.Role;
 import com.system.library.repository.RoleRepository;
@@ -111,6 +114,13 @@ public class UserService {
             throw new EntityNotFoundException();
 
         userRepository.delete(user.get());
+    }
+
+    public ViewUsersResponse viewUsers(){
+        List<UserDTO> usersDTO = new ArrayList<>();
+        List<User> users = userRepository.findAll();
+        users.forEach(user -> usersDTO.add(userMapper.toDTO(user)));
+        return new ViewUsersResponse(usersDTO);
     }
 
     private String generateToken(String username, Set<RoleEnum> roles) throws NoSuchAlgorithmException, InvalidKeyException {

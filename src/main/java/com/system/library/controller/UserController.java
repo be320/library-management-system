@@ -1,6 +1,8 @@
 package com.system.library.controller;
 
+import com.system.library.config.annotations.IsAdmin;
 import com.system.library.config.annotations.IsUser;
+import com.system.library.dto.book.ViewBooksResponse;
 import com.system.library.dto.user.*;
 import com.system.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,13 @@ public class UserController {
     public ResponseEntity<String> deleteUserDetails(){
         userService.deleteUserDetails();
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
+    }
+
+    @GetMapping
+    @IsAdmin
+    public ResponseEntity<ViewUsersResponse> viewUsers(){
+        ViewUsersResponse viewUsersResponse = userService.viewUsers();
+        return new ResponseEntity<>(viewUsersResponse, HttpStatus.OK);
     }
 
 }
