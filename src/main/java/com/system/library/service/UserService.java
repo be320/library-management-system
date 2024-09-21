@@ -113,6 +113,24 @@ public class UserService {
 
     }
 
+    public UserDTO updateUserDetails(Long id, SaveUserRequest updateUserRequest){
+
+        Optional<User> userOptional =  userRepository.findById(id);
+
+        if(userOptional.isPresent()){
+            User user = userOptional.get();
+            user.setEmail(updateUserRequest.getEmail());
+            user.setUsername(updateUserRequest.getUsername());
+            user.setPassword(updateUserRequest.getPassword());
+            userRepository.save(user);
+            return userMapper.toDTO(user);
+        }
+        else {
+            throw new EntityNotFoundException();
+        }
+
+    }
+
     public void deleteUserDetails(){
 
         String username =  tokenService.getUsernameFromToken();
